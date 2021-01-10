@@ -33,7 +33,16 @@ geschenkLijst.prototype.addGift = function (n, p) {
 };
 
 geschenkLijst.prototype.getList = function () {
-  return this.giftList;
+  const tagsOpen = "<html>\n<body>\n<ul>\n";
+  const gifts = this.giftList
+    .map(
+      (gift) =>
+        `<li>Id: ${gift["id"]}, Name: ${gift["name"]}, Price: ${gift["price"]}</li>\n`
+    )
+    .toString()
+    .replace(/,/g, "");
+  const tagsClose = "</ul>\n</body>\n</html>";
+  return tagsOpen + gifts + tagsClose;
 };
 
 geschenkLijst.prototype.removeGift = function (id) {
